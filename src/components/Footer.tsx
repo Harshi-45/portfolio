@@ -14,7 +14,7 @@ export default function Footer() {
             href={site.github}
             target="_blank"
             rel="noreferrer"
-            className="transition-colors hover:text-emerald-400"
+            className="transition-colors hover:text-fuchsia-300"
           >
             GitHub
           </a>
@@ -22,13 +22,13 @@ export default function Footer() {
             href={site.linkedin}
             target="_blank"
             rel="noreferrer"
-            className="transition-colors hover:text-emerald-400"
+            className="transition-colors hover:text-fuchsia-300"
           >
             LinkedIn
           </a>
           <a
             href={`mailto:${site.email}`}
-            className="transition-colors hover:text-emerald-400"
+            className="transition-colors hover:text-fuchsia-300"
           >
             Email
           </a>

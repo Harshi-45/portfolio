@@ -36,24 +36,24 @@ export default async function BlogPost({ params }: Props) {
   const post = await getPostBySlug(slug);
 
   return (
-    <RevealGroup className="mx-auto max-w-3xl px-6 py-16">
+    <RevealGroup className="mx-auto max-w-3xl scroll-mt-24 px-6 py-24">
       <RevealItem>
         <Link
           href="/blog"
-          className="font-mono text-sm text-emerald-400 hover:underline"
+          className="font-mono text-sm text-fuchsia-300 hover:underline"
         >
           &larr; Back to blog
         </Link>
-        <h1 className="mt-4 text-3xl font-semibold text-slate-100">
+        <h1 className="mt-4 text-4xl font-bold tracking-tight text-white">
           {post.title}
         </h1>
-        <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-slate-500">
+        <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-slate-400">
           <span className="font-mono">{post.date}</span>
           <span>{post.readingTime}</span>
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-slate-800/70 px-2.5 py-1 text-slate-300"
+              className="rounded-full bg-white/5 px-2.5 py-1 text-slate-300"
             >
               {tag}
             </span>
@@ -62,7 +62,7 @@ export default async function BlogPost({ params }: Props) {
       </RevealItem>
       <RevealItem>
         <div
-          className="prose prose-invert prose-emerald glass mt-10 max-w-none rounded-2xl p-8 prose-pre:border prose-pre:border-white/10 prose-pre:bg-slate-950/60"
+          className="prose prose-invert prose-fuchsia glass mt-10 max-w-none rounded-3xl p-9 prose-pre:border prose-pre:border-white/10 prose-pre:bg-slate-950/60"
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
       </RevealItem>

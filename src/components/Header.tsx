@@ -23,27 +23,26 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50">
       <motion.div
-        className="h-[2px] origin-left bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400"
+        className="h-[2px] origin-left bg-gradient-to-r from-indigo-400 via-fuchsia-400 to-cyan-400"
         style={{ scaleX }}
       />
       <div className="glass border-x-0 border-t-0">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link
             href="/"
-            className="font-mono text-sm font-semibold tracking-tight text-slate-100"
+            className="font-mono text-base font-bold tracking-tight text-white"
           >
             <span className="gradient-text">hari</span>
-            <span className="text-emerald-400">.</span>dev
+            <span className="text-fuchsia-400">.</span>dev
           </Link>
-          <nav className="flex flex-wrap items-center justify-end gap-x-5 gap-y-1 text-sm text-slate-400">
+          <nav className="flex flex-wrap items-center justify-end gap-x-1 gap-y-1 text-sm text-slate-300">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="group relative py-1 transition-colors hover:text-slate-100"
+                className="rounded-full px-3.5 py-1.5 transition-all duration-300 hover:bg-white/8 hover:text-white"
               >
                 {link.label}
-                <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-gradient-to-r from-emerald-400 to-cyan-400 transition-transform duration-300 group-hover:scale-x-100" />
               </Link>
             ))}
           </nav>

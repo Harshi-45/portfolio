@@ -6,12 +6,12 @@ export default function SectionHeading({
   title: string;
 }) {
   return (
-    <div className="mb-10">
-      <p className="flex items-center gap-2 font-mono text-sm text-emerald-400">
-        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_2px_rgba(16,185,129,0.6)]" />
+    <div className="mb-12">
+      <span className="pill-badge inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-mono text-xs text-fuchsia-200">
+        <span className="h-1.5 w-1.5 rounded-full bg-fuchsia-400 shadow-[0_0_10px_3px_rgba(217,70,239,0.6)]" />
         {eyebrow}
-      </p>
-      <h2 className="mt-2 text-2xl font-semibold text-slate-100 sm:text-3xl">
+      </span>
+      <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
         {title}
       </h2>
     </div>

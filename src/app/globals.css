@@ -2,8 +2,13 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #020617;
-  --foreground: #e2e8f0;
+  --background: #030014;
+  --foreground: #e9e7fb;
+  --grad-1: #6366f1; /* indigo-500 */
+  --grad-2: #d946ef; /* fuchsia-500 */
+  --grad-3: #22d3ee; /* cyan-400 */
+  --grad-4: #f43f5e; /* rose-500 */
+  --grad-5: #8b5cf6; /* violet-500 */
 }
 
 @theme inline {
@@ -23,85 +28,186 @@ html {
 }
 
 ::selection {
-  background: #10b98133;
-  color: #ecfdf5;
+  background: #d946ef44;
+  color: #fdf4ff;
 }
 
-/* Ambient background orbs */
-@keyframes drift-a {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(4%, 6%) scale(1.08); }
+/* ---------- Mesh gradient aurora ---------- */
+@keyframes mesh-drift-1 {
+  0%, 100% { transform: translate(-8%, -6%) scale(1); }
+  50% { transform: translate(6%, 4%) scale(1.15); }
 }
-@keyframes drift-b {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-5%, -4%) scale(1.05); }
+@keyframes mesh-drift-2 {
+  0%, 100% { transform: translate(6%, -4%) scale(1.05); }
+  50% { transform: translate(-6%, 8%) scale(1.2); }
 }
-@keyframes drift-c {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(3%, -5%) scale(1.1); }
+@keyframes mesh-drift-3 {
+  0%, 100% { transform: translate(0, 6%) scale(1.1); }
+  50% { transform: translate(-8%, -6%) scale(0.95); }
+}
+@keyframes mesh-drift-4 {
+  0%, 100% { transform: translate(4%, 4%) scale(1); }
+  50% { transform: translate(-4%, -8%) scale(1.1); }
+}
+@keyframes mesh-hue {
+  0% { filter: hue-rotate(0deg) saturate(1.15); }
+  50% { filter: hue-rotate(35deg) saturate(1.3); }
+  100% { filter: hue-rotate(0deg) saturate(1.15); }
 }
 
-.orb {
+.mesh {
+  position: absolute;
+  inset: 0;
+  animation: mesh-hue 24s ease-in-out infinite;
+}
+
+.mesh-blob {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.35;
+  filter: blur(110px);
+  mix-blend-mode: screen;
   will-change: transform;
 }
-.orb-emerald {
-  background: radial-gradient(circle, #10b981 0%, transparent 70%);
-  animation: drift-a 22s ease-in-out infinite;
+.mesh-blob-1 {
+  background: radial-gradient(circle, var(--grad-1) 0%, transparent 72%);
+  animation: mesh-drift-1 18s ease-in-out infinite;
 }
-.orb-cyan {
-  background: radial-gradient(circle, #22d3ee 0%, transparent 70%);
-  animation: drift-b 26s ease-in-out infinite;
+.mesh-blob-2 {
+  background: radial-gradient(circle, var(--grad-2) 0%, transparent 72%);
+  animation: mesh-drift-2 22s ease-in-out infinite;
 }
-.orb-violet {
-  background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
-  animation: drift-c 30s ease-in-out infinite;
+.mesh-blob-3 {
+  background: radial-gradient(circle, var(--grad-3) 0%, transparent 72%);
+  animation: mesh-drift-3 20s ease-in-out infinite;
 }
-
-/* Glass surface */
-.glass {
-  background: linear-gradient(
-    to bottom right,
-    rgba(255, 255, 255, 0.06),
-    rgba(255, 255, 255, 0.02)
-  );
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-hover {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-}
-.glass-hover:hover {
-  border-color: rgba(16, 185, 129, 0.4);
-  box-shadow: 0 0 40px -12px rgba(16, 185, 129, 0.35);
-  transform: translateY(-2px);
-}
-
-.gradient-text {
-  background: linear-gradient(90deg, #6ee7b7, #67e8f9, #c4b5fd);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.glow-btn {
-  box-shadow: 0 0 0 rgba(16, 185, 129, 0);
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
-}
-.glow-btn:hover {
-  box-shadow: 0 0 30px -6px rgba(16, 185, 129, 0.6);
-  transform: translateY(-1px);
+.mesh-blob-4 {
+  background: radial-gradient(circle, var(--grad-4) 0%, transparent 72%);
+  animation: mesh-drift-4 26s ease-in-out infinite;
 }
 
 .bg-grid {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ---------- Glass surfaces ---------- */
+.glass {
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.07),
+    rgba(255, 255, 255, 0.02)
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+/* ---------- Animated glow border (conic spin) ---------- */
+.glow-border {
+  position: relative;
+  isolation: isolate;
+  border-radius: inherit;
+}
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--angle, 0deg),
+    var(--grad-1),
+    var(--grad-2),
+    var(--grad-3),
+    var(--grad-4),
+    var(--grad-1)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: spin-angle 4s linear infinite;
+  z-index: -1;
+}
+.glow-border:hover::before {
+  opacity: 1;
+}
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes spin-angle {
+  to { --angle: 360deg; }
+}
+
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px -20px rgba(99, 102, 241, 0.45);
+}
+
+/* ---------- Gradient / shimmer text ---------- */
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--grad-1),
+    var(--grad-2),
+    var(--grad-3),
+    var(--grad-5)
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 8s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+  position: relative;
+  background: linear-gradient(90deg, var(--grad-1), var(--grad-2), var(--grad-3));
+  background-size: 200% auto;
+  transition: background-position 0.5s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease;
+  box-shadow: 0 0 0 rgba(217, 70, 239, 0);
+}
+.btn-primary:hover {
+  background-position: 100% 50%;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 40px -8px rgba(217, 70, 239, 0.55);
+}
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-ghost {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+.btn-ghost:hover {
+  transform: translateY(-2px) scale(1.03);
+  border-color: rgba(217, 70, 239, 0.5);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+.btn-ghost:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.pill-badge {
+  background: linear-gradient(
+    to right,
+    rgba(99, 102, 241, 0.15),
+    rgba(217, 70, 239, 0.15)
+  );
+  border: 1px solid rgba(217, 70, 239, 0.3);
 }
 
 .caret {
@@ -114,4 +220,12 @@ html {
 @keyframes blink {
   0%, 49% { opacity: 1; }
   50%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
