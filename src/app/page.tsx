@@ -1,65 +1,189 @@
-import Image from "next/image";
+import Link from "next/link";
+import SectionHeading from "@/components/SectionHeading";
+import { site, skills, experience, projects } from "@/lib/data";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <>
+      {/* Hero */}
+      <section className="mx-auto flex max-w-5xl flex-col gap-6 px-6 pb-20 pt-20 sm:pt-28">
+        <p className="font-mono text-sm text-emerald-400">
+          Hi, I&apos;m {site.name.split(" ")[0]}
+        </p>
+        <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-slate-100 sm:text-5xl">
+          {site.title} crafting reliable backend systems.
+        </h1>
+        <p className="max-w-2xl text-lg leading-relaxed text-slate-400">
+          {site.bio}
+        </p>
+        <div className="flex flex-wrap gap-3 pt-2">
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#projects"
+            className="rounded-md bg-emerald-500 px-5 py-2.5 text-sm font-medium text-slate-950 transition-colors hover:bg-emerald-400"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            View Projects
           </a>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
+            className="rounded-md border border-slate-700 px-5 py-2.5 text-sm font-medium text-slate-200 transition-colors hover:border-emerald-400 hover:text-emerald-400"
           >
-            Documentation
+            Get in Touch
+          </a>
+          <a
+            href={site.resumeUrl}
+            className="rounded-md border border-slate-700 px-5 py-2.5 text-sm font-medium text-slate-200 transition-colors hover:border-emerald-400 hover:text-emerald-400"
+          >
+            Resume
           </a>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* About */}
+      <section id="about" className="mx-auto max-w-5xl scroll-mt-24 px-6 py-16">
+        <SectionHeading eyebrow="01. About" title="A little about me" />
+        <p className="max-w-3xl leading-relaxed text-slate-400">
+          {site.bio}
+        </p>
+      </section>
+
+      {/* Skills */}
+      <section
+        id="skills"
+        className="mx-auto max-w-5xl scroll-mt-24 px-6 py-16"
+      >
+        <SectionHeading eyebrow="02. Skills" title="What I work with" />
+        <div className="grid gap-6 sm:grid-cols-2">
+          {skills.map((group) => (
+            <div
+              key={group.category}
+              className="rounded-lg border border-slate-800 bg-slate-900/50 p-5"
+            >
+              <h3 className="mb-3 text-sm font-semibold text-slate-200">
+                {group.category}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-slate-700 px-3 py-1 text-xs text-slate-400"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Experience */}
+      <section
+        id="experience"
+        className="mx-auto max-w-5xl scroll-mt-24 px-6 py-16"
+      >
+        <SectionHeading eyebrow="03. Experience" title="Where I've worked" />
+        <div className="space-y-8">
+          {experience.map((job) => (
+            <div
+              key={`${job.company}-${job.role}`}
+              className="rounded-lg border border-slate-800 bg-slate-900/50 p-6"
+            >
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 className="text-lg font-semibold text-slate-100">
+                  {job.role} · {job.company}
+                </h3>
+                <span className="font-mono text-xs text-slate-500">
+                  {job.period}
+                </span>
+              </div>
+              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-400">
+                {job.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Projects */}
+      <section
+        id="projects"
+        className="mx-auto max-w-5xl scroll-mt-24 px-6 py-16"
+      >
+        <SectionHeading eyebrow="04. Projects" title="Things I've built" />
+        <div className="grid gap-6 sm:grid-cols-2">
+          {projects.map((project) => (
+            <div
+              key={project.slug}
+              className="flex flex-col rounded-lg border border-slate-800 bg-slate-900/50 p-6"
+            >
+              <span className="mb-2 w-fit rounded-full border border-emerald-800 bg-emerald-950 px-2.5 py-0.5 text-xs text-emerald-400">
+                {project.type}
+              </span>
+              <h3 className="text-lg font-semibold text-slate-100">
+                {project.name}
+              </h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">
+                {project.summary}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {project.tech.map((tech) => (
+                  <span
+                    key={tech}
+                    className="rounded-full bg-slate-800 px-2.5 py-1 text-xs text-slate-400"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section
+        id="contact"
+        className="mx-auto max-w-5xl scroll-mt-24 px-6 py-16"
+      >
+        <SectionHeading eyebrow="05. Contact" title="Let's work together" />
+        <p className="max-w-xl leading-relaxed text-slate-400">
+          I&apos;m open to backend engineering opportunities and
+          collaborations. The best way to reach me is by email.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a
+            href={`mailto:${site.email}`}
+            className="rounded-md bg-emerald-500 px-5 py-2.5 text-sm font-medium text-slate-950 transition-colors hover:bg-emerald-400"
+          >
+            {site.email}
+          </a>
+          <a
+            href={site.github}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-md border border-slate-700 px-5 py-2.5 text-sm font-medium text-slate-200 transition-colors hover:border-emerald-400 hover:text-emerald-400"
+          >
+            GitHub
+          </a>
+          <a
+            href={site.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-md border border-slate-700 px-5 py-2.5 text-sm font-medium text-slate-200 transition-colors hover:border-emerald-400 hover:text-emerald-400"
+          >
+            LinkedIn
+          </a>
+        </div>
+        <p className="mt-10 text-sm text-slate-500">
+          Also check out my{" "}
+          <Link href="/blog" className="text-emerald-400 hover:underline">
+            blog
+          </Link>{" "}
+          for technical writing.
+        </p>
+      </section>
+    </>
   );
 }
